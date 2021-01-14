@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<div class="item-wrp">
+
+	<div class="item">
+		<img src="images/products/{{ content_data.image }}" alt="{{ content_data.name }} photo" class="item-img">
+		<div class="desc">
+			<span class="item-name">{{ content_data.name }}</span>
+			<span class="short-desc-item">{{ content_data.short_desc }}</span>
+			<p class="item-desc">{{ content_data.full_desc }}</p>
+			<span class="item-price">{{ content_data.price }}</span>
+			<a href="index.php?c=page&act=asAjax&id=<?= $item['id']?>" class="item-btn btn">Купить</a>
+		</div>
+	</div>
+
+</div>
+
+{% include 'footer.html' %}
