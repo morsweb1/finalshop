@@ -5,14 +5,13 @@ class IndexController extends Controller
     public $view = 'index';
     public $title;
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
-        $this->title .= ' | ДЕМО!!!';
+        $this->title .= ' BRAND';
     }
 	
 	//метод, который отправляет в представление информацию в виде переменной content_data
-	function index($data){
+	function index($data) {
 		 return "test";
 	}
 
