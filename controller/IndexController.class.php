@@ -15,6 +15,10 @@ class IndexController extends Controller
 		 return "test";
 	}
 
+	function basket($data) {
+      return 'This is Basket';
+  }
+
 	/*function test($id){
 
     }

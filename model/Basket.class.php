@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: apryakhin
+ * User: alex
  * Date: 29.09.2016
  * Time: 13:13
  */
@@ -49,14 +49,13 @@ class Basket extends Model {
         $this->id_order = $id_order;
     }
 
-//    public function save() {
-//        $query = "INSERT INTO basket(id_user, id_good, price, is_in_order) VALUES
-//                  (
-//                    ".(($this->id_user)==NULL ? 'NULL' : $this->id_user).",
-//                    ".$this->id_good.",
-//                    ".$this->price.",
-//                    ".$this->is_in_order."
-//                  )";
-//        db::getInstance()->Query($query);
-//    }
+    public function save() {
+        $query = "INSERT INTO basket(id_user, id_good, price) VALUES
+                  (
+                    ".(($this->id_user)==NULL ? 'NULL' : $this->id_user).",
+                    ".$this->id_good.",
+                    ".$this->price."
+                  )";
+        db::getInstance()->Query($query);
+    }
 }
