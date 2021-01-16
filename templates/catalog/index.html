@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+
+<h3 class="cat-title">{{ title }}</h3>
+
+<div class="products-wrp">
+
+	{% for good in content_data.goods %}
+
+		<div class="product">
+			<a href="index.php?path=catalog/item/{{ good.id }}" class="img-link">
+				<img src="images/products/{{ good.image }}" alt=" {{ good.name }} photo" class="prod-img">
+			</a>
+			<span class="prod-name">{{ good.name }}</span>
+			<span class="short-desc">{{ good.short_desc }}</span>
+			<span class="price">{{ good.price }}</span>
+			<a href="index.php?path=order/add/{{ good.id }}" class="prod-link btn" data-id="{{ good.id }}">В корзину</a>
+		</div>
+
+	{% endfor %}
+</div>
+
+{% include 'footer.html' %}

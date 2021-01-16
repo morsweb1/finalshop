@@ -8,9 +8,9 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-	<script type="text/javascript" src="/js/main.js"></script>
-	<script type="text/javascript" src="/js/category.js"></script>
+	<script defer type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+	<script defer src="js/app.js"></script>
 
 	<title>{{ title }}</title>
 </head>
@@ -25,11 +25,11 @@
 			<ul class="menu">
 				<a class="menu-link" href="index.php">Главная</a>
 				<a class="menu-link" href="index.php?path=review/index">Отзывы</a>
-				<a class="menu-link" href="index.php?path=catalog/catalog">каталог</a>
+				<a class="menu-link" href="index.php?path=catalog/index">каталог</a>
 <!--				<?php if (!$user):?>-->
 				<a class="menu-link" href="index.php?c=user&act=reg">Регистрация</a>
 				<a class="menu-link" href="index.php?c=user&act=login">Войти</a>
-				<a href="index.php?c=page&act=cart"><i class="fas fa-shopping-basket"></i></a>
+				<a href="index.php?path=index/basket"><i class="fas fa-shopping-basket"></i><span class="cart-show"></span></a>
 <!--				<?php else:?>-->
 <!--				<?php foreach	($user as $u):?>-->
 <!--				<?php if ($u['role'] == 1):?>-->

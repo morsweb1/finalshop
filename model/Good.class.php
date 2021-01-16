@@ -52,11 +52,11 @@ class Good extends Model {
 //      ['id_good' => (int)$this->id_good]);
 //  }
 //
-//    public static function getGoodPrice($id_good) {
-//        $result = db::getInstance()->Select(
-//            'SELECT price FROM goods WHERE id_good = :id_good',
-//            ['id_good' => $id_good]);
-//
-//        return (isset($result[0]) ? $result[0]['price'] : null);
-//    }
+    public static function getGoodPrice($id_good) {
+        $result = db::getInstance()->Select(
+            'SELECT price FROM catalog WHERE id_good = :id_good',
+            ['id_good' => $id_good]);
+
+        return (isset($result[0]) ? $result[0]['price'] : null);
+    }
 }

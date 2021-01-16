@@ -3,7 +3,7 @@ class CatalogController extends Controller {
 
   public $view = 'catalog';
 
-  public function catalog($data){
+  public function index($data){
 
     $this->title = 'Каталог товаров';
 
