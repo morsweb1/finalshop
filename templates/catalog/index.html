@@ -13,10 +13,10 @@
 			<span class="prod-name">{{ good.name }}</span>
 			<span class="short-desc">{{ good.short_desc }}</span>
 			<span class="price">{{ good.price }}</span>
-			<a href="index.php?path=order/add/{{ good.id }}" class="prod-link btn" data-id="{{ good.id }}">В корзину</a>
+			<a href="#" class="prod-link btn" data-id="{{ good.id }}">В корзину</a>
 		</div>
 
 	{% endfor %}
 </div>
-
+<!--index.php?path=order/add/{{ good.id }}&asAjax=true-->
 {% include 'footer.html' %}
