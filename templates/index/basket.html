@@ -2,4 +2,23 @@
 
 {{ content_data }}
 
+<!--{% for i in item %}-->
+<!--	{{ item.name }}-->
+<!--{% endfor %}-->
+<h3 class="cat-title">{{ title }}</h3>
+
+<div class="basket">
+
+	{% for good in content_data.goods %}
+
+		<div class="basket-item">
+			<img src="images/products/{{ good.image }}" alt=" {{ good.name }} photo" class="basket-img">
+			<span class="basket-name">{{ good.id_good }}</span>
+			<span class="price">{{ good.price }}</span>
+			<span class="basket-count">{{ good.count }}</span>
+		</div>
+
+	{% endfor %}
+</div>
+
 {% include 'footer.html' %}

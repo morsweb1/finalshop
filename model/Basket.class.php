@@ -9,9 +9,12 @@
 class Basket extends Model {
     protected $id_user = NULL;
     protected $id_good;
+    protected $name;
+    protected $image;
     protected $price = 0;
     protected $is_in_order = 0;
     protected $id_order = NULL;
+    protected $count = 1;
 
     function __construct(array $values = []) {
         parent::__construct($values);
@@ -28,6 +31,13 @@ class Basket extends Model {
         $this->id_good = $id_good;
     }
 
+  /**
+   * @param mixed $name
+   */
+    public function setName($name) {
+      $this->name = $name;
+    }
+
     /**
      * @param mixed $price
      */
@@ -35,6 +45,19 @@ class Basket extends Model {
         $this->price = $price;
     }
 
+  /**
+   * @param mixed $image
+   */
+  public function setImage($image) {
+    $this->price = $image;
+  }
+
+  /**
+   * @param mixed $count
+   */
+    public function setCount($count) {
+      $this->count = $count;
+    }
     /**
      * @param int $is_in_order
      */
@@ -50,12 +73,37 @@ class Basket extends Model {
     }
 
     public function save() {
-        $query = "INSERT INTO basket(id_user, id_good, price) VALUES
-                  (
-                    ".(($this->id_user)==NULL ? 'NULL' : $this->id_user).",
-                    ".$this->id_good.",
-                    ".$this->price."
-                  )";
-        db::getInstance()->Query($query);
+
+      $query = "INSERT INTO basket (id_user, id_good, name, image, price, count) VALUES
+                (
+                  ".(($this->id_user)==NULL ? '0' : $this->id_user).",
+                  ".$this->id_good.",
+                  ".$this->name.",
+                  ".$this->image.",
+                  ".$this->price.",
+                  ".$this->count."
+                )";
+      db::getInstance()->Query($query);
     }
+
+  public static function getGoods() {
+
+    return db::getInstance()->Query(
+      'SELECT * FROM basket ORDER BY id_basket DESC',
+      ['status' => Status::Active]
+    );
+  }
+
+  public function getGoodsInfo($id_good) {
+    return db::getInstance()->Select(
+            'SELECT name, price, image FROM catalog WHERE id=:id_good',
+            ['id_good' => $id_good]);
+  }
+
+  public function getGoodCount() {
+      return db::getInstance()->Select(
+        'SELECT count FROM basket WHERE id_good=:id_good',
+          ['id_good' => (int)$this->id_good]
+      );
+  }
 }

@@ -16,7 +16,21 @@ class IndexController extends Controller
 	}
 
 	function basket($data) {
-      return 'This is Basket';
+
+    $this->title = 'Корзина';
+
+    $goods = Basket::getGoods(isset($data['id']) ? $data['id'] : 0);
+
+//    foreach ($goods as $good) {
+//
+//      $itemBasket = new Basket([
+//        'id_good'=>$good['id_good']
+//      ]);
+//      return ['goods'=>$goods, 'item'=>$itemBasket->getGoodsInfo()[0]];
+//    }
+
+
+    return ['goods'=>$goods];
   }
 
 	/*function test($id){

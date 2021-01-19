@@ -332,7 +332,6 @@ textarea {
 .price {
     font-size: 26px;
     font-weight: bold;
-    margin: 20px 0 0 0;
 }
 .prod-link {
     margin: 20px 0 0 0;
@@ -424,6 +423,9 @@ textarea {
 .admin-form-btn:hover {
     background-color: #acaaaa;
 }
+.basket {
+    padding: 0 100px;
+}
 .basket-item {
     display: flex;
     align-items: center;
@@ -435,7 +437,8 @@ textarea {
 }
 .basket-img {
     display: block;
-    width: 100px;
+    width: 120px;
+    height: 100px;
 }
 .cart-name-wrp {
     flex: 1 1;

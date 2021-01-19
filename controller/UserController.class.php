@@ -1,9 +1,9 @@
 <?php
 
-class UserController extends Controller
-{
-    function index(){
+class UserController extends Controller {
 
-    }
+  function index(){
+
+  }
 
 }
