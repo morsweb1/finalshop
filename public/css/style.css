@@ -444,6 +444,10 @@ textarea {
     flex: 1 1;
     margin: 0 0 0 40px;
 }
+.cart-show {
+    font-size: 20px;
+    color: white;
+}
 .basket-name {
     margin: 0 30px 0 0;
     font-size: 26px;

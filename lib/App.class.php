@@ -39,7 +39,7 @@ class App {
           $data = [
               'content_data' => $controller->$methodName($_GET),
               'title' => $controller->title,
-              'item' => $controller->$methodName($_GET)
+//              'item' => $controller->$methodName($_GET)
           ];
 
           $view = $controller->view . '/' . $methodName . '.html';

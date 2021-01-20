@@ -10,15 +10,31 @@ class OrderController extends Controller {
     ];
 
     if ($data['id'] > 0) {
-      $id_good = $data['id'];
-      $basket = new Basket();
-      $basket->setIdGood($id_good);
-      $basket->setName(Good::getGoodName($id_good));
-      $basket->setImage(Good::getGoodImage($id_good));
-      $basket->setPrice(Good::getGoodPrice($id_good));
-      $basket->save();
-      $res['result'] = 1;
+
+      $item = Basket::getGoodBasket($data['id']);
+
+      if (isset($item)) {
+
+        $count = $item['count'];
+        $count++;
+        $item = Basket::updateGood($data['id'], $count);
+
+        $res['result'] = 2;
+
+      } else {
+
+        $basket = new Basket();
+        $basket->setIdGood($data['id']);
+        $basket->setName(Good::getGoodName($data['id']));
+        $basket->setImage(Good::getGoodImage($data['id']));
+        $basket->setPrice(Good::getGoodPrice($data['id']));
+        $basket->save();
+
+        $res['result'] = 1;
+      }
+
     }
+
     return json_encode($res);
   }
 }

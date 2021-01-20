@@ -1,10 +1,5 @@
 {% include 'header.html' %}
 
-{{ content_data }}
-
-<!--{% for i in item %}-->
-<!--	{{ item.name }}-->
-<!--{% endfor %}-->
 <h3 class="cat-title">{{ title }}</h3>
 
 <div class="basket">
@@ -14,8 +9,9 @@
 		<div class="basket-item">
 			<img src="images/products/{{ good.image }}" alt=" {{ good.name }} photo" class="basket-img">
 			<span class="basket-name">{{ good.id_good }}</span>
+			<span class="basket-name">{{ good.name }}</span>
 			<span class="price">{{ good.price }}</span>
-			<span class="basket-count">{{ good.count }}</span>
+			<span class="basket-count">шт. {{ good.count }}</span>
 		</div>
 
 	{% endfor %}
