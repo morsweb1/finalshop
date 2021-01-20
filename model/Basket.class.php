@@ -42,14 +42,14 @@ class Basket extends Model {
      * @param mixed $price
      */
     public function setPrice($price) {
-        $this->price = $price;
+      $this->price = $price;
     }
 
   /**
    * @param mixed $image
    */
   public function setImage($image) {
-    $this->price = $image;
+    $this->image = $image;
   }
 
   /**
@@ -74,15 +74,15 @@ class Basket extends Model {
 
     public function save() {
 
-      $query = "INSERT INTO basket (id_user, id_good, name, image, price, count) VALUES
-                (
-                  ".(($this->id_user)==NULL ? '0' : $this->id_user).",
-                  ".$this->id_good.",
-                  ".$this->name.",
-                  ".$this->image.",
-                  ".$this->price.",
+      $query = "INSERT INTO basket (id_user, id_good, name, image, price, count) VALUES (
+                  ".(($this->id_user==NULL) ? 0 : $this->id_user).", 
+                  ".$this->id_good.", 
+                  '".$this->name."',
+                  '".$this->image."', 
+                  ".$this->price.", 
                   ".$this->count."
-                )";
+                  )";
+
       db::getInstance()->Query($query);
     }
 
@@ -94,16 +94,25 @@ class Basket extends Model {
     );
   }
 
-  public function getGoodsInfo($id_good) {
-    return db::getInstance()->Select(
-            'SELECT name, price, image FROM catalog WHERE id=:id_good',
+  public static function getGoodBasket($id_good) {
+    $result = db::getInstance()->Select(
+            'SELECT * FROM basket WHERE id_good=:id_good',
             ['id_good' => $id_good]);
+    return (isset($result[0]) ? $result[0] : null);
   }
 
-  public function getGoodCount() {
-      return db::getInstance()->Select(
+  public static function getGoodCount($id_good) {
+    $result = db::getInstance()->Select(
         'SELECT count FROM basket WHERE id_good=:id_good',
-          ['id_good' => (int)$this->id_good]
+          ['id_good' => $id_good]
+      );
+    return (isset($result[0]) ? $result[0]['count'] : null);
+  }
+
+  public static function updateGood( $id_good, $count) {
+      return db::getInstance()->Query(
+          "UPDATE basket SET count = $count, price = (price * count)  WHERE id_good=:id_good",
+        ['id_good'=>$id_good]
       );
   }
 }
