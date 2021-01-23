@@ -20,7 +20,7 @@ class Basket extends Model {
         parent::__construct($values);
     }
 
-    function setUser($id_user){
+    public function setUser($id_user){
         $this->id_user = $id_user;
     }
 
@@ -111,7 +111,7 @@ class Basket extends Model {
 
   public static function updateGood( $id_good, $count) {
       return db::getInstance()->Query(
-          "UPDATE basket SET count = $count, price = (price * count)  WHERE id_good=:id_good",
+          "UPDATE basket SET count = $count WHERE id_good=:id_good",
         ['id_good'=>$id_good]
       );
   }

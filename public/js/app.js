@@ -2,6 +2,7 @@ const btns = document.querySelectorAll('.prod-link');
 
 btns.forEach(buybtn => buybtn.addEventListener('click',  (e)=> {
 	const id = e.target.dataset.id
+	// console.log(id, buybtn)
 	addToBasket(id)
 }))
 
@@ -13,11 +14,10 @@ function renderBasket(data) {
 
 }
 
-
 function addToBasket(id) {
 	return fetch('index.php?path=order/add/'+id+'&asAjax=true', {
 		method: 'POST',
-		// body:{itemId: id},
+		body:{itemId: id},
 		headers: {'Content-Type': 'application/x-www-form-urlencoded, charset=utf-8'}
 	})
 		.then(response => {
@@ -28,22 +28,9 @@ function addToBasket(id) {
 		.then(data => {
 
 			renderBasket(data)
-			// console.log(data)
+			console.log(data)
 		})
 		.catch(()=> console.log('ошибка!'))
 }
 
-// function addToBasket(id) {
-// 	$.ajax({
-// 		url: "index.php?path=order/add/"+id+'&asAjax=true',
-// 		method: 'post',
-// 		data: {itemId:id}
-// 	}).done(function(data){ // Успешное получение ответа
-// 		JSON.parse(data).forEach(d => {
-// 			console.log(d)
-// 		})
-// 		// $(".cart-show").html(data);
-// 		console.log(JSON.parse(data))
-// 	});
-// }
 //index.php?path=order/add/{{ good.id }}&asAjax=true

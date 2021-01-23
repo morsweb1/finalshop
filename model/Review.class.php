@@ -19,7 +19,14 @@ class Review extends Model {
 
   public static function getReviews() {
     return db::getInstance()->Query(
-      'SELECT * FROM comment ORDER BY id DESC ',
+      'SELECT * FROM comment ORDER BY id DESC',
     ['status'=>Status::Active]);
+  }
+
+  public static function newReviews($name, $text) {
+    return db::getInstance()->Query(
+      'INSERT INTO comment (name, text) VALUES (:name, :text)',
+      ['name'=>$name, 'text'=>$text]
+    );
   }
 }

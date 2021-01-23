@@ -8,8 +8,11 @@ class ReviewController extends Controller {
 
     $this->title = 'Отзывы';
 
-    $reviews = Review::getReviews(isset($data['id']) ?$data['id'] : 0);
+    if ($this->IsPost()) {
+      $newReview = Review::newReviews($_POST['name'], $_POST['text']);
+    }
 
+    $reviews = Review::getReviews(isset($data['id']) ? $data['id'] : 0);
     return ['reviews'=>$reviews];
 
   }
