@@ -56,5 +56,26 @@ class db
             return $result->fetchAll();
         }
     }
+
+//    public function Insert ($table, $params) {
+//        $collum = array();
+//        foreach ($params as $key => $value) {
+//            $collum[] = $key;
+//            $sense[] = "'$value'";
+//
+//            if ($value === null) {
+//                $params[$key] = 'NULL';
+//            }
+//        }
+//
+//        $collum_s = implode(',', $collum);
+//        $sense_s = implode(',', $sense);
+//
+//        $query = "INSERT INTO $table ($collum_s) VALUES ($sense_s)";
+//        $res = $this->db->prepare($query);
+//        $res->execute($params);
+//
+//        return $this->db->lastInsertId();
+//    }
 }
 ?>

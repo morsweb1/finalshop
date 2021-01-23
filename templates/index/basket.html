@@ -2,19 +2,31 @@
 
 <h3 class="cat-title">{{ title }}</h3>
 
+<!--{% if content_data.goods %}-->
+
 <div class="basket">
-
+	<table class="basket-table">
+		<tr>
+			<th>фото</th>
+			<th>артикул</th>
+			<th>наименование</th>
+			<th>кол-во</th>
+			<th>цена</th>
+		</tr>
 	{% for good in content_data.goods %}
-
-		<div class="basket-item">
-			<img src="images/products/{{ good.image }}" alt=" {{ good.name }} photo" class="basket-img">
-			<span class="basket-name">{{ good.id_good }}</span>
-			<span class="basket-name">{{ good.name }}</span>
-			<span class="price">{{ good.price }}</span>
-			<span class="basket-count">шт. {{ good.count }}</span>
-		</div>
-
+		<tr>
+			<td><img src="images/products/{{ good.image }}" alt=" {{ good.name }} photo" class="basket-img"></td>
+			<td><span class="basket-name">{{ good.id_good }}</span></td>
+			<td><span class="basket-name">{{ good.name }}</span></td>
+			<td>шт.&nbsp;<a href="#" class="prod-link plus" data-id="{{ good.id_good }}">+</a><span class="basket-count">{{ good.count }}</span><a href="#" class="minus prod-link" data-id="{{ good.id }}">-</a></td>
+			<td><span class="price">{{ good.price * good.count }}</span></td>
+		</tr>
 	{% endfor %}
+	</table>
 </div>
+<!--{% else %}-->
 
+<!--	<h3 class="cat-title">В корзине нет товаров!</h3>-->
+
+<!--{% endif %}-->
 {% include 'footer.html' %}

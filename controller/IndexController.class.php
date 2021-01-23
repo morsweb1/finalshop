@@ -9,7 +9,7 @@ class IndexController extends Controller
         parent::__construct();
         $this->title .= ' BRAND';
     }
-	
+
 	//метод, который отправляет в представление информацию в виде переменной content_data
 	function index($data) {
 		 return "test";
@@ -21,16 +21,17 @@ class IndexController extends Controller
 
     $goods = Basket::getGoods(isset($data['id']) ? $data['id'] : 0);
 
-//    foreach ($goods as $good) {
-//
-//      $itemBasket = new Basket([
-//        'id_good'=>$good['id_good']
-//      ]);
-//      return ['goods'=>$goods, 'item'=>$itemBasket->getGoodsInfo()[0]];
-//    }
-
-
     return ['goods'=>$goods];
+  }
+
+  function registration($data) {
+    $this->title = 'Регистриция';
+
+    if ($this->IsPost()) {
+
+      $newUser = User::newUser($_POST['name'], $_POST['email'], $_POST['pass']);
+    }
+    return ['user'=>$newUser];
   }
 
 	/*function test($id){
