@@ -7,10 +7,10 @@ spl_autoload_register("gbStandardAutoload");
 function gbStandardAutoload($className)
 {
     $dirs = [
-            'controller',
-            'data/migrate',
-            'lib',
-            'lib/smarty',
+        'controller',
+        'data/migrate',
+        'lib',
+        'lib/smarty',
         'lib/commands',
         'model/'
     ];
@@ -23,14 +23,9 @@ function gbStandardAutoload($className)
             $found = true;
         }
     }
-	//$obj = new A;
-		
+
     if (!$found) {
         throw new Exception('Unable to load ' . $className);
 }
     return true;
 }
-
-
-//$object = new Test;
-

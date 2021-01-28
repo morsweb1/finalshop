@@ -115,4 +115,11 @@ class Basket extends Model {
         ['id_good'=>$id_good]
       );
   }
+
+  public function delete() {
+      return db::getInstance()->Query(
+        'DELETE FROM basket WHERE id_good=:id',
+      ['id'=>$this->id_good]
+      );
+  }
 }

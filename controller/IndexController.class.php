@@ -1,7 +1,6 @@
 <?php
 
-class IndexController extends Controller
-{
+class IndexController extends Controller {
     public $view = 'index';
     public $title;
 
@@ -12,7 +11,10 @@ class IndexController extends Controller
 
 	//метод, который отправляет в представление информацию в виде переменной content_data
 	function index($data) {
-		 return "test";
+
+//    $user = $data['user'];
+//
+//		return ['user'=>$user];
 	}
 
 	function basket($data) {
@@ -34,11 +36,22 @@ class IndexController extends Controller
     return ['user'=>$newUser];
   }
 
-	/*function test($id){
+  function login($data) {
+    $this->title = 'Вход';
 
+    if ($this->IsPost()) {
+      $user = User::login($_POST['name'], $_POST['pass']);
     }
-*/
+    return ['user'=>$user];
+  }
 
+  public function account($data) {
+    $this->title = 'Личный кабинет';
+
+    $user = new User([]);
+    $user->getUser($_SESSION['userId']);
+    return ['user'=>$user];
+  }
 }
 
 //site/index.php?path=index/test/5

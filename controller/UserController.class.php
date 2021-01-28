@@ -2,8 +2,15 @@
 
 class UserController extends Controller {
 
-  function index(){
 
+
+  public function logout($data) {
+    $logout = new User([]);
+    $logout->logout();
+    header('location: index.php');
+    return true;
   }
+
+
 
 }
