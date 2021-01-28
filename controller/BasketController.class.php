@@ -19,7 +19,7 @@ class BasketController extends Controller {
         $count++;
         $item = Basket::updateGood($data['id'], $count);
 
-        $res['result'] = 2;
+        $res['result'] = 1;
 
       } else {
 
@@ -32,7 +32,7 @@ class BasketController extends Controller {
           $basket->setPrice(Good::getGoodPrice($data['id']));
           $basket->save();
 
-          $res['result'] = 3;
+          $res['result'] = 1;
         } else {
           $basket = new Basket();
           $basket->setIdGood($data['id']);
@@ -61,6 +61,7 @@ class BasketController extends Controller {
       $item = new Basket();
       $item->setIdGood($data['id']);
       $item->delete();
+
       $res['result'] = 5;
 
     }

@@ -1,6 +1,5 @@
 <?php
-class db
-{
+class db {
     private static $_instance = null;
 
     private $db; // Ресурс работы с БД

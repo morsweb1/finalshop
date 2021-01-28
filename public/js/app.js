@@ -22,6 +22,8 @@ delBtns.forEach(del => del.addEventListener('click', e => {
 
 function renderBasket(data) {
 	const answer = JSON.parse(data.content_data)
+
+
 	console.log(answer.result)
 }
 
