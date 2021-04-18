@@ -9,8 +9,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 
 	<script defer type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-
-	<script defer src="js/app.js"></script>
+	<script defer src="js/main.js"></script>
+	<script defer src="js/basket.js"></script>
 
 	<title>{{ title }}</title>
 </head>
@@ -23,7 +23,6 @@
 		</div>
 		<div class="menu-wrp">
 			<ul class="menu">
-
 				{% if user %}
 					{% if user.role == 1 %}
 						<a class="menu-link" href="index.php?c=admin&act=goods">Товары</a>
@@ -36,7 +35,7 @@
 						<a class="menu-link" href="index.php?path=catalog/index">каталог</a>
 						<a class="menu-link" href="index.php?path=index/account">Личный кабинет</a>
 						<a class="menu-link" href="index.php?path=user/logout">Выйти</a>
-						<a href="index.php?path=index/basket"><i class="fas fa-shopping-basket"></i><span class="cart-show"></span></a>
+						<a class="basket-btn" href=""><i class="fas fa-shopping-basket"></i><span class="cart-show"></span></a>
 					{% endif %}
 				{% else %}
 						<a class="menu-link" href="index.php">Главная</a>
@@ -44,10 +43,18 @@
 						<a class="menu-link" href="index.php?path=catalog/index">каталог</a>
 						<a class="menu-link" href="index.php?path=index/registration">Регистрация</a>
 						<a class="menu-link" href="index.php?path=index/login">Войти</a>
-						<a href="index.php?path=index/basket"><i class="fas fa-shopping-basket"></i><span class="cart-show"></span></a>
+						<button class="basket-btn"><i class="fas fa-shopping-basket"></i><span class="cart-show"></span></button>
 				{% endif %}
-
 			</ul>
+		</div>
+		<div class="basket-modal-wrp hidden" data-close="true">
+			<div class="basket">
+				<h4 class="title title-basket">Корзина</h4>
+				<i class="far fa-window-close" data-close="true"></i>
+				<div class="basket-items-wrp">
+
+				</div>
+			</div>
 		</div>
 	</div>
 </header>

@@ -26,7 +26,7 @@ class db {
     /*
      * Выполняем соединение с базой данных
      */
-    public function Connect($user, $password, $base, $host = 'localhost', $port = 3307) {
+    public function Connect($user, $password, $base, $host = 'localhost', $port = 3306) {
         // Формируем строку соединения с сервером
         $connectString = 'mysql:host=' . $host . ';port= ' . $port . ';dbname=' . $base . ';charset=UTF8;';
         $this->db = new PDO($connectString, $user, $password,

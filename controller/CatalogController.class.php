@@ -6,9 +6,7 @@ class CatalogController extends Controller {
   public function index($data){
 
     $this->title = 'Каталог товаров';
-
     $goods = Good::getGoods(isset($data['id']) ? $data['id'] : 0);
-
     return ['goods' => $goods];
   }
 
