@@ -2,71 +2,68 @@
 
 class BasketController extends Controller {
 
-  public function add($data) {
-    $_GET['asAjax'] = true;
+  	public function add($data) {
+		$_GET['asAjax'] = true;
 
-    $res = [
-      'result' => 0
-    ];
+		$res = [];
 
-    if ($data['id'] > 0) {
+		if ($data['id'] > 0) {
 
-      $item = Basket::getGoodBasket($data['id']);
+			$item = Basket::getGoodBasket($data['id']);
 
-      if (isset($item)) {
+			if (isset($item)) {
 
-        $count = $item['count'];
-        $count++;
-        $item = Basket::updateGood($data['id'], $count);
+				$count = $item['count'];
+				$count++;
+				$item = Basket::updateGood($data['id'], $count);
 
-        $res['result'] = 2;
+			} else {
 
-      } else {
+				if (isset($_SESSION['userId'])) {
+				$basket = new Basket();
+				$basket->setUser($_SESSION['userId']);
+				$basket->setIdGood($data['id']);
+				$basket->setName(Good::getGoodName($data['id']));
+				$basket->setImage(Good::getGoodImage($data['id']));
+				$basket->setPrice(Good::getGoodPrice($data['id']));
+				$basket->save();
+				} else {
+				$basket = new Basket();
+				$basket->setIdGood($data['id']);
+				$basket->setName(Good::getGoodName($data['id']));
+				$basket->setImage(Good::getGoodImage($data['id']));
+				$basket->setPrice(Good::getGoodPrice($data['id']));
+				$basket->save();
+				}
+      		}
+			
+		}
+		$goods = Basket::getGoods();
 
-        if (isset($_SESSION['userId'])) {
-          $basket = new Basket();
-          $basket->setUser($_SESSION['userId']);
-          $basket->setIdGood($data['id']);
-          $basket->setName(Good::getGoodName($data['id']));
-          $basket->setImage(Good::getGoodImage($data['id']));
-          $basket->setPrice(Good::getGoodPrice($data['id']));
-          $basket->save();
+		foreach($goods as $good) {
+			array_push($res, $good);
+		}
+		return json_encode($res);
+  	}
 
-          $res['result'] = 1;
-        } else {
-          $basket = new Basket();
-          $basket->setIdGood($data['id']);
-          $basket->setName(Good::getGoodName($data['id']));
-          $basket->setImage(Good::getGoodImage($data['id']));
-          $basket->setPrice(Good::getGoodPrice($data['id']));
-          $basket->save();
+	public function delete($data) {
+		$_GET['delGood'] = true;
 
-          $res['result'] = 1;
-        }
-      }
-    }
+		$res = [
+		'result' => 0
+		];
 
-    return json_encode($res);
-  }
+		if ($data['id'] > 0) {
 
-  public function delete($data) {
-    $_GET['delGood'] = true;
+		$item = new Basket();
+		$item->setIdGood($data['id']);
+		$item->delete();
 
-    $res = [
-      'result' => 0
-    ];
+		$res['result'] = 5;
 
-    if ($data['id'] > 0) {
-
-      $item = Basket::getGoodBasket($data['id']);
-
-      $item->delete();
-
-      $res['result'] = 5;
-
-    }
-    return json_encode($res);
-  }
+		}
+		return json_encode($res);
+	}
 
 //  public function changeBasket($data) {
 //    $_GET['delGood'] = true;
